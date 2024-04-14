@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../public/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main-container">
+        <form method="GET" action="/chats/new">
+
+   <button class="btn">Creat a New chats</button>
+
+        </form>
+    </div>
+    <div>
+    <% for(let chat of Chats) { %>
+        <div class="main">
+        <div class="from">
+            <p>From:<%= chat.From %></p>
+        </div>
+       <div class="msg">
+        <p><%=chat.msg %></p>
+       </div>
+       <br>
+        <div class="edit">
+         
+            <form method="GET" action="/chats/<%= chat._id %>/edit">
+                <button class="btn">Edit</button>
+                  </form>
+            <br>
+            
+
+
+       </div>
+
+        <div class="delet">
+        <form method="POST" action="/chats/<%= chat._id %>?_method=DELETE">
+            <button class="delete">DETELE</button>
+        
+    </div>
+</form>
+    <div class="resived">  <p> Resived by:<%= chat.To %></p> </div>
+      
+    
+    <br><br><div class="time">
+        <p>created_at:<%= chat.created_at.toString().split(" ")[4] %></p>
+         
+        <p><%= chat.created_at.toString().split(" ").slice(0,4).join(" ") %></p>   
+       </div>
+       </div>
+    <% } %>  
+</body>
+</html>
